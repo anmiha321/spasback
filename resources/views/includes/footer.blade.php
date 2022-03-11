@@ -4,18 +4,18 @@
                     <nav class="footer__nav">
                         <div class="footer__col">
                             <a href="/" class="footer__nav-item">Главная</a>
-                            <a href="/pages/about/" class="footer__nav-item">О нас</a>
-                            <a href="/pages/volunteer/" class="footer__nav-item">Стать добровольцем</a>
-                            <a href="/pages/thanks/" class="footer__nav-item">Благодарности</a>
-                            <a href="/pages/active-search/" class="footer__nav-item">Активные поиски</a>
-                            <a href="/pages/needs/" class="footer__nav-item">Отрядные нужды</a>
+                            <a href="{{route('aboutUs')}}" class="footer__nav-item">О нас</a>
+                            <a href="{{route('join')}}" class="footer__nav-item">Стать добровольцем</a>
+                            <a href="{{route('comments')}}" class="footer__nav-item">Благодарности</a>
+                            <a href="{{route('activeSearch')}}" class="footer__nav-item">Активные поиски</a>
+                            <a href="{{route('help')}}" class="footer__nav-item">Отрядные нужды</a>
                         </div>
                         <div class="footer__col">
-                            <a href="/pages/search-req/" class="footer__nav-item footer__nav-item_green">Заявка на поиск</a>
-                            <a href="/pages/blog/" class="footer__nav-item">Блог</a>
-                            <a href="/pages/contacts/" class="footer__nav-item">Контакты</a>
-                            <a href="/pages/gallery/" class="footer__nav-item">Галерея</a>
-                            <a href="/pages/faq/" class="footer__nav-item">FAQ</a>
+                            <a href="{{route('requestHelp')}}" class="footer__nav-item footer__nav-item_green">Заявка на поиск</a>
+                            <a href="{{route('blog')}}" class="footer__nav-item">Блог</a>
+                            <a href="{{route('contacts')}}" class="footer__nav-item">Контакты</a>
+                            <a href="{{route('gallery')}}" class="footer__nav-item">Галерея</a>
+                            <a href="{{route('faq')}}" class="footer__nav-item">FAQ</a>
                         </div>
                     </nav>
                     <div class="footer__contacts">
@@ -43,17 +43,29 @@
                 <div class="header-popup__top">
                     <p class="header-popup__heading">Войти/Зарегистрироваться</p>
                 </div>
-                <form action="#" id="form-enter" class="header-popup__form" autocomplete="off">
+                <form method="POST" action="{{ route('login') }}" id="form-enter" class="header-popup__form" autocomplete="off">
+                    @csrf
+
                     <div class="header-popup__row">
                         <p class="header-popup__label">Адрес электронной почты</p>
-                        <input type="email" name="email" class="header-popup__input input" placeholder="pochta@gmail.com" maxlength="40" required>
+                        <input type="email" id="email" name="email" class="header-popup__input input" placeholder="pochta@gmail.com" maxlength="40" required>
+                        @error('email')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
                     </div>
                     <div class="header-popup__row">
                         <p class="header-popup__label">Пароль</p>
-                        <input type="text" name="passw" class="header-popup__input input" placeholder="Введите пароль" maxlength="30" required>
+                        <input type="password" id="password" name="password" class="header-popup__input input" placeholder="Введите пароль" maxlength="30" required>
+                        @error('password')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
                     </div>
                     <div class="header-popup__row">
-                        <p class="header-popup__forgot">Забыли пароль?</p>
+                        <p data-forgot class="header-popup__forgot">Забыли пароль?</p>
                     </div>
                     <input type="submit" value="Войти" class="header-popup__btn">
                 </form>
@@ -63,6 +75,40 @@
                 </div>
             </div>
         </div>
+
+        <div id="popup-forgor" class="popup header-popup">
+            <div class="header-popup__wrapper">
+                <div class="header-popup__close">
+                    <img data-close src="/css/img/svg/x.svg" alt="Закрыть" class="header-popup__icon">
+                </div>
+                <div class="header-popup__top">
+                    <p class="header-popup__heading">Востановить пароль</p>
+                </div>
+
+                @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
+                <form method="POST" action="{{ route('password.email') }}" id="form-forgor" class="header-popup__form" autocomplete="off">
+                    @csrf
+
+                    <div class="header-popup__row">
+                        <p class="header-popup__label">Адрес электронной почты</p>
+                        <input id="email" type="email" name="email" class="header-popup__input input" placeholder="pochta@gmail.com" maxlength="40" required>
+
+                        @error('email')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
+                    </div>
+                    <input type="submit" value="Востановить пароль" class="header-popup__btn">
+                </form>
+            </div>
+        </div>
+
         <div id="popup-reg" class="popup header-popup">
             <div class="header-popup__wrapper">
                 <div class="header-popup__close">
@@ -71,10 +117,18 @@
                 <div class="header-popup__top">
                     <p class="header-popup__heading">Зарегистрироваться</p>
                 </div>
-                <form action="#" id="form-reg" class="header-popup__form" autocomplete="off">
+                <form method="POST" action="{{ route('register') }}" id="form-reg" class="header-popup__form" autocomplete="off">
+                    @csrf
+
                     <div class="header-popup__row">
                         <p class="header-popup__label">Имя</p>
-                        <input type="text" name="name" class="header-popup__input input" placeholder="Мария" maxlength="30" required>
+                        <input type="text" id="name" name="name" class="header-popup__input input" placeholder="Мария" maxlength="30" required>
+
+                        @error('name')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
                     </div>
                     <div class="header-popup__row">
                         <p class="header-popup__label">Фамилия</p>
@@ -82,15 +136,27 @@
                     </div>
                     <div class="header-popup__row">
                         <p class="header-popup__label">Адрес электронной почты</p>
-                        <input type="email" name="email" class="header-popup__input input" placeholder="pochta@gmail.com" maxlength="40" required>
+                        <input type="email" id="email" name="email" class="header-popup__input input" placeholder="pochta@gmail.com" maxlength="40" required>
+
+                        @error('email')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
                     </div>
                     <div class="header-popup__row">
                         <p class="header-popup__label">Пароль</p>
-                        <input type="password" class="header-popup__input input" placeholder="Введите пароль" maxlength="30" required>
+                        <input name="password" id="password" type="password" class="header-popup__input input" placeholder="Введите пароль" maxlength="30" required>
+
+                        @error('password')
+                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                        @enderror
                     </div>
                     <div class="header-popup__row">
                         <p class="header-popup__label">Повторите пароль</p>
-                        <input type="password" class="header-popup__input input" placeholder="Повторите пароль" maxlength="30" required>
+                        <input name="password_confirmation" id="password-confirm" type="password" class="header-popup__input input" placeholder="Повторите пароль" maxlength="30" required>
                     </div>
                     <input type="submit" value="Зарегистрироваться" class="header-popup__btn">
                 </form>

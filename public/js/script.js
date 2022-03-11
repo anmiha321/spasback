@@ -3835,7 +3835,7 @@ DynamicAdapt.prototype.moveBack = function (parent, element, index) {
 DynamicAdapt.prototype.indexInParent = function (parent, element) {
   const array = Array.prototype.slice.call(parent.children);
   return Array.prototype.indexOf.call(array, element);
-}; // Функция сортировки массива по breakpoint и place 
+}; // Функция сортировки массива по breakpoint и place
 // по возрастанию для this.type = min
 // по убыванию для this.type = max
 
@@ -11056,7 +11056,10 @@ window.onload = function () {
     } else if (target.hasAttribute('data-registration')) {
       target.closest('.popup').classList.remove('active');
       openModal('reg');
-    } else if (target.hasAttribute('data-close')) {
+    } else if (target.hasAttribute('data-forgot')) {
+        target.closest('.popup').classList.remove('active');
+        openModal('forgor');
+    }else if (target.hasAttribute('data-close')) {
       const idPopup = target.closest('.popup').getAttribute('id').substring(6);
       closeModal(idPopup);
     }
@@ -11511,7 +11514,7 @@ $(function () {
     $('[data-alpha-fio]').on('keyup', function () {
       $(this).val(this.value.match(/^[a-zA-Zа-яА-ЯёЁ]*[\s]?[a-zA-Zа-яА-ЯёЁ]*[\s]?[a-zA-Zа-яА-ЯёЁ]*$/));
     });
-  } //Cookie    
+  } //Cookie
 
 
   $('.cookie__btn').on('click', function () {

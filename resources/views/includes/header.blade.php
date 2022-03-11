@@ -48,8 +48,8 @@ $keywords = 'keywords';
     <meta itemprop="description" content="<?=$description?>" />
     <meta itemprop="image" content="<?='https://'.$_SERVER['HTTP_HOST'].'/css/img/view-min.png';?>"/>
 
-    <link rel="icon" href="/css/img/favicon/favicon.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/css/img/favicon/apple-touch-icon-180x180.png" />
+    <link rel="icon" href="/css/img/svg/logo.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/css/img/svg/logo.svg" />
     <meta name="theme-color" content="#767067" />
 
     <link rel="stylesheet" href="/css/style.css?_v=5f20e1dedc26d1da432265a1307abd2d">
@@ -66,26 +66,33 @@ $keywords = 'keywords';
                             <p class="header__phone">Горячая линия: <a href="tel:+78006005952" class="header__tel">8 800 600 59 52</a></p>
                         </div>
                         <div class="header__right">
-                            <p data-enter class="header__enter">Войти</p>
-                            <p data-reg class="header__reg ">Зарегестрироваться</p>
+                            @auth
+                                <p class="header__reg ">{{Auth::user()->name}} {{Auth::user()->surname}}</p>
+                                <p class="header__enter" style="margin-left: 15px;" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">выйти</p>
 
-<!--                            <p data-reg class="header__reg ">Андриевских Никита</p>-->
-<!--                            <p data-enter class="header__enter" style="margin-left: 15px;">выйти</p>-->
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            @else
+                                <p data-enter class="header__enter">Войти</p>
+                                <p data-reg class="header__reg ">Зарегестрироваться</p>
+                            @endauth
                         </div>
                     </div>
                     <div class="burger"><span class="burger__span"></span></div>
                     <nav class="header__nav menu">
                         <a href="/" class="menu__item">Главная</a>
-                        <a href="/pages/about/" class="menu__item">О нас</a>
-                        <a href="/pages/volunteer/" class="menu__item">Стать добровольцем</a>
-                        <a href="/pages/active-search/" class="menu__item">Активные поиски</a>
-                        <a href="/pages/needs/" class="menu__item">Отрядные нужды</a>
-                        <a href="/pages/search-req/" class="menu__item menu__item_green">Заявка на поиск</a>
-                        <a href="/pages/thanks/" class="menu__item">Благодарности</a>
-                        <a href="/pages/blog/" class="menu__item">Блог</a>
-                        <a href="/pages/contacts/" class="menu__item">Контакты</a>
-                        <a href="/pages/gallery/" class="menu__item">Галерея</a>
-                        <a href="/pages/faq/" class="menu__item">FAQ</a>
+                        <a href="{{route('aboutUs')}}" class="menu__item">О нас</a>
+                        <a href="{{route('join')}}" class="menu__item">Стать добровольцем</a>
+                        <a href="{{route('activeSearch')}}" class="menu__item">Активные поиски</a>
+                        <a href="{{route('help')}}" class="menu__item">Отрядные нужды</a>
+                        <a href="{{route('requestHelp')}}" class="menu__item menu__item_green">Заявка на поиск</a>
+                        <a href="{{route('comments')}}" class="menu__item">Благодарности</a>
+                        <a href="{{route('blog')}}" class="menu__item">Блог</a>
+                        <a href="{{route('contacts')}}" class="menu__item">Контакты</a>
+                        <a href="{{route('gallery')}}" class="menu__item">Галерея</a>
+                        <a href="{{route('faq')}}" class="menu__item">FAQ</a>
                     </nav>
                 </div>
             </div>
