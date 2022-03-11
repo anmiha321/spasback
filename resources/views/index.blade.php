@@ -12,22 +12,22 @@
                         class="promo__name">«Регион спас»</span></h1>
                 <div class="promo__stats">
                     <div class="promo__item">
-                        <p class="promo__num">35</p>
+                        <p class="promo__num">{{$user->count()}}</p>
                         <p class="promo__text">Наших сотрудников</p>
                     </div>
                     <span class="promo__separator"></span>
                     <div class="promo__item">
-                        <p class="promo__num">100</p>
+                        <p class="promo__num">{{$valantors->count()}}</p>
                         <p class="promo__text">Волонтёров</p>
                     </div>
                     <span class="promo__separator"></span>
                     <div class="promo__item">
-                        <p class="promo__num">513</p>
+                        <p class="promo__num">{{$people_search->count()}}</p>
                         <p class="promo__text">Людей в поиске</p>
                     </div>
                     <span class="promo__separator"></span>
                     <div class="promo__item">
-                        <p class="promo__num">210</p>
+                        <p class="promo__num">{{$people_that_find_out->count()}}</p>
                         <p class="promo__text">Людей нашлось</p>
                     </div>
                     <img src="/css/img/decor/promo1.svg" alt="Декор" class="promo__wave">
