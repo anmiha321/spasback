@@ -82,17 +82,61 @@ $keywords = 'keywords';
                     </div>
                     <div class="burger"><span class="burger__span"></span></div>
                     <nav class="header__nav menu">
-                        <a href="/" class="menu__item">Главная</a>
-                        <a href="{{route('aboutUs')}}" class="menu__item">О нас</a>
-                        <a href="{{route('join')}}" class="menu__item">Стать добровольцем</a>
-                        <a href="{{route('activeSearch')}}" class="menu__item">Активные поиски</a>
-                        <a href="{{route('help')}}" class="menu__item">Отрядные нужды</a>
-                        <a href="{{route('requestHelp')}}" class="menu__item menu__item_green">Заявка на поиск</a>
-                        <a href="{{route('comments')}}" class="menu__item">Благодарности</a>
-                        <a href="{{route('blog')}}" class="menu__item">Блог</a>
-                        <a href="{{route('contacts')}}" class="menu__item">Контакты</a>
-                        <a href="{{route('gallery')}}" class="menu__item">Галерея</a>
-                        <a href="{{route('faq')}}" class="menu__item">FAQ</a>
+                        @if (\Route::current()->getName() == 'home')
+                            <a href="/" class="menu__item  menu__item_green">Главная</a>
+                        @else
+                            <a href="/" class="menu__item">Главная</a>
+                        @endif
+                        @if (\Route::current()->getName() == 'aboutUs')
+                            <a href="{{route('aboutUs')}}" class="menu__item  menu__item_green">О нас</a>
+                            @else
+                                <a href="{{route('aboutUs')}}" class="menu__item">О нас</a>
+                            @endif
+                            @if (\Route::current()->getName() == 'join')
+                                <a href="{{route('join')}}" class="menu__item menu__item_green">Стать добровольцем</a>
+                            @else
+                                <a href="{{route('join')}}" class="menu__item">Стать добровольцем</a>
+                            @endif
+                            @if (\Route::current()->getName() == 'activeSearch')
+                                <a href="{{route('activeSearch')}}" class="menu__item menu__item_green">Активные поиски</a>
+                            @else
+                                <a href="{{route('activeSearch')}}" class="menu__item">Активные поиски</a>
+                            @endif
+                            @if (\Route::current()->getName() == 'help')
+                                <a href="{{route('help')}}" class="menu__item menu__item_green">Отрядные нужды</a>
+                            @else
+                                <a href="{{route('help')}}" class="menu__item">Отрядные нужды</a>
+                            @endif
+                            @if (\Route::current()->getName() == 'requestHelp')
+                                <a href="{{route('requestHelp')}}" class="menu__item menu__item_green">Заявка на поиск</a>
+                            @else
+                                <a href="{{route('requestHelp')}}" class="menu__item">Заявка на поиск</a>
+                            @endif
+                            @if (\Route::current()->getName() == 'comments')
+                                <a href="{{route('comments')}}" class="menu__item menu__item_green">Благодарности</a>
+                            @else
+                                <a href="{{route('comments')}}" class="menu__item">Благодарности</a>
+                            @endif
+                            @if (\Route::current()->getName() == 'blog')
+                                <a href="{{route('blog')}}" class="menu__item menu__item_green">Блог</a>
+                            @else
+                                <a href="{{route('blog')}}" class="menu__item">Блог</a>
+                            @endif
+                            @if (\Route::current()->getName() == 'contacts')
+                                <a href="{{route('contacts')}}" class="menu__item menu__item_green">Контакты</a>
+                            @else
+                                <a href="{{route('contacts')}}" class="menu__item">Контакты</a>
+                            @endif
+                            @if (\Route::current()->getName() == 'gallery')
+                                <a href="{{route('gallery')}}" class="menu__item menu__item_green">Галерея</a>
+                            @else
+                                <a href="{{route('gallery')}}" class="menu__item">Галерея</a>
+                            @endif
+                            @if (\Route::current()->getName() == 'faq')
+                                <a href="{{route('faq')}}" class="menu__item menu__item_green">FAQ</a>
+                            @else
+                                <a href="{{route('faq')}}" class="menu__item">FAQ</a>
+                            @endif
                     </nav>
                 </div>
             </div>
@@ -102,3 +146,11 @@ $keywords = 'keywords';
 </body>
 </html>
 <script src="{{asset('/js/script.js')}}"></script>
+@yield('join')
+@yield('ActiveSearch')
+@yield('Help')
+@yield('HelpRequest')
+@yield('Comments')
+@yield('Blog')
+@yield('Gallery')
+@yield('FAQ')

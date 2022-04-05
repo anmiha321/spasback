@@ -15,7 +15,7 @@ class PeopleInSearchFactory extends Factory
     {
         return [
             'fio_of_responsible' => $this->faker->text,
-            'phone' => $this->faker->phoneNumber,
+            'phone' => $this->faker->numerify('8##########'),
             'fio_of_missing' => $this->faker->text,
             'birthday' => $this->faker->date,
             'day_of_missing' => $this->faker->date,

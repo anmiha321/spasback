@@ -131,7 +131,7 @@
             <div class="isquestions__body">
                 <div class="isquestions__content">
                     <h4 class="isquestions__heading">Появились вопросы?</h4>
-                    <div class="isquestions__btn"><a href="/pages/faq/" class="isquestions__link">Перейти в раздел FAQ</a></div>
+                    <div class="isquestions__btn"><a href="{{route('faq')}}" class="isquestions__link">Перейти в раздел FAQ</a></div>
                 </div>
             </div>
         </div>

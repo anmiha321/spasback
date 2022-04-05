@@ -47,66 +47,28 @@
                 </h2>
                 <div class="now-search__body">
                     <div class="now-search__slider sWs">
-                        <div class="now-search__slide">
-                            <div class="now-search__item person">
-                                <div class="now-search__info person__info">
-                                    <div class="person__top">
-                                        <p class="person__name">Иванова Елизавета Павловна</p>
-                                        <p class="person__age "><span class="person__age-text">Возраст:</span> 14 лет
-                                        </p>
-                                    </div>
-                                    <div class="person__call">
-                                        <div>
-                                            <p class="person__text">Номер координатора:</p>
-                                            <a href="tel:+79322565367" class="person__phone">+7 (932) 25-65-367</a>
+                        @foreach($people_that_find_out_display as $row)
+                            <div class="now-search__slide">
+                                <div class="now-search__item person">
+                                    <div class="now-search__info person__info">
+                                        <div class="person__top">
+                                            <p class="person__name">{{$row->fio_of_missing}}</p>
+                                            <p class="person__age "><span class="person__age-text">Возраст:</span> {{\Carbon\Carbon::parse($row->birthday)->age}} года
+                                            </p>
+                                        </div>
+                                        <div class="person__call">
+                                            <div>
+                                                <p class="person__text">Номер координатора:</p>
+                                                <a href="tel:+{{$row->phone}}" class="person__phone">{{$row->getPhoneFormattedAttribute()}}</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="person__photo">
-                                    <img src="/css/img/search3.png" alt="ФИО" class="person__img">
+                                    <div class="person__photo">
+                                        <img src="/uploads/missing_people_photo/{{$row->photo_of_missing}}" alt="ФИО" class="person__img">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="now-search__slide">
-                            <div class="now-search__item person">
-                                <div class="now-search__info person__info">
-                                    <div class="person__top">
-                                        <p class="person__name">Кузьминов Василий Петрович</p>
-                                        <p class="person__age"><span class="person__age-text">Возраст:</span> 73 года
-                                        </p>
-                                    </div>
-                                    <div class="person__call">
-                                        <div>
-                                            <p class="person__text">Номер координатора:</p>
-                                            <a href="tel:+79322565367" class="person__phone">+7 (932) 25-65-367</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="person__photo">
-                                    <img src="/css/img/search1.png" alt="ФИО" class="person__img">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="now-search__slide">
-                            <div class="now-search__item person">
-                                <div class="now-search__info person__info">
-                                    <div class="person__top">
-                                        <p class="person__name">Иванов Иван Павлович</p>
-                                        <p class="person__age"><span class="person__age-text">Возраст:</span> 26 года
-                                        </p>
-                                    </div>
-                                    <div class="person__call">
-                                        <div>
-                                            <p class="person__text">Номер координатора:</p>
-                                            <a href="tel:+79322565367" class="person__phone">+7 (932) 25-65-367</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="person__photo">
-                                    <img src="/css/img/search2.png" alt="ФИО" class="person__img">
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                     <div class="now-search__pagination">
                         <span class="now-search__dot active"></span>
@@ -134,7 +96,7 @@
                         некоммерческая организация, занимающаяся оперативным и информационным поиском пропавших в городе
                         или природной среде. Мы тесно сотрудничаем с государственными структурами, но не зависим от
                         них.</p>
-                    <a href="/pages/about/" class="about-main__more">Читать больше</a>
+                    <a href="{{route('aboutUs')}}" class="about-main__more">Читать больше</a>
                 </div>
                 <div class="about-main__right">
                     <div class="about-main__item">

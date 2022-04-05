@@ -11219,205 +11219,205 @@ $(function () {
     }
   }
 
-  $('#form-faq').on('submit', sendQuestion);
+  // $('#form-faq').on('submit', sendQuestion);
 
-  function sendRequestVolunteer(e, btn) {
-    btn = $(this).find('input[type="submit"]');
-    const surnamename = $(this).find('input[name="surname_volunteer"]');
-    const name = $(this).find('input[name="name_volunteer"]');
-    const email = $(this).find('input[name="email_volunteer"]');
-    const phone = $(this).find('input[name="phone_volunteer"]');
-    const city = $(this).find('input[name="city_volunteer"]');
-    const birthday = $(this).find('input[name="birthday_volunteer"]');
-    const err = $(this).find('[data-err]');
-    const waiting = $(this).find('[data-waiting]');
-    e.preventDefault();
+  // function sendRequestVolunteer(e, btn) {
+  //   btn = $(this).find('input[type="submit"]');
+  //   const surnamename = $(this).find('input[name="surname_volunteer"]');
+  //   const name = $(this).find('input[name="name_volunteer"]');
+  //   const email = $(this).find('input[name="email_volunteer"]');
+  //   const phone = $(this).find('input[name="phone_volunteer"]');
+  //   const city = $(this).find('input[name="city_volunteer"]');
+  //   const birthday = $(this).find('input[name="birthday_volunteer"]');
+  //   const err = $(this).find('[data-err]');
+  //   const waiting = $(this).find('[data-waiting]');
+  //   e.preventDefault();
+  //
+  //   if (email.val() !== '' && !emailTest(email)) {
+  //     err.addClass('active').html('Электронная почта указана некорректно');
+  //     setTimeout(() => err.removeClass('active'), 5000);
+  //   } else if (!nameTest(name) || !nameTest(surnamename)) {
+  //     err.addClass('active').html('Имя и фамилия могут содержать только буквы');
+  //     setTimeout(() => err.removeClass('active'), 5000);
+  //   } else if (phone.val() === '') {
+  //     err.addClass('active').html('Не указан номер телефона');
+  //     setTimeout(() => err.removeClass('active'), 5000);
+  //   } else if (city.val() === '') {
+  //     err.addClass('active').html('Не указан населённый пункт');
+  //     setTimeout(() => err.removeClass('active'), 5000);
+  //   } else if (birthday.val() === '' || birthday.val().length > 10) {
+  //     err.addClass('active').html('Дата рождения не указана или введена некорректно');
+  //     setTimeout(() => err.removeClass('active'), 5000);
+  //   } else {
+  //     let fd = new FormData(this);
+  //     $.ajax({
+  //       url: '/backend/send_volunteer.php',
+  //       type: 'POST',
+  //       contentType: false,
+  //       processData: false,
+  //       data: fd,
+  //       beforeSend: () => {
+  //         btn.prop('disabled', true);
+  //         setTimeout(() => btn.prop('disabled', false), 10000);
+  //         waiting.addClass('active');
+  //       },
+  //       success: msg => {
+  //         waiting.removeClass('active');
+  //
+  //         switch (msg) {
+  //           case '1111':
+  //             {
+  //               err.addClass('active').html('Что-то пошло не так! До этого IF дойти не должен!');
+  //               setTimeout(() => err.removeClass('active'), 5000);
+  //               break;
+  //             }
+  //
+  //           case '3':
+  //             {
+  //               err.addClass('active').html('Электронная почта указана некорректно');
+  //               setTimeout(() => err.removeClass('active'), 5000);
+  //               break;
+  //             }
+  //
+  //           case '4':
+  //             {
+  //               err.addClass('active').html('Дата рождения больше сегодняшнего дня');
+  //               setTimeout(() => err.removeClass('active'), 5000);
+  //               break;
+  //             }
+  //
+  //           case '5':
+  //             {
+  //               err.addClass('active').html('Год рождения введён некорректно');
+  //               setTimeout(() => err.removeClass('active'), 5000);
+  //               break;
+  //             }
+  //
+  //           case '6':
+  //             {
+  //               err.addClass('active').html('У Вас сегодня День Рождения?:-)');
+  //               setTimeout(() => err.removeClass('active'), 5000);
+  //               break;
+  //             }
+  //
+  //           default:
+  //             {
+  //               $(this)[0].reset();
+  //             }
+  //         }
+  //       }
+  //     });
+  //   }
+  // }
+  //
+  // $('#form-volunteer').on('submit', sendRequestVolunteer);
 
-    if (email.val() !== '' && !emailTest(email)) {
-      err.addClass('active').html('Электронная почта указана некорректно');
-      setTimeout(() => err.removeClass('active'), 5000);
-    } else if (!nameTest(name) || !nameTest(surnamename)) {
-      err.addClass('active').html('Имя и фамилия могут содержать только буквы');
-      setTimeout(() => err.removeClass('active'), 5000);
-    } else if (phone.val() === '') {
-      err.addClass('active').html('Не указан номер телефона');
-      setTimeout(() => err.removeClass('active'), 5000);
-    } else if (city.val() === '') {
-      err.addClass('active').html('Не указан населённый пункт');
-      setTimeout(() => err.removeClass('active'), 5000);
-    } else if (birthday.val() === '' || birthday.val().length > 10) {
-      err.addClass('active').html('Дата рождения не указана или введена некорректно');
-      setTimeout(() => err.removeClass('active'), 5000);
-    } else {
-      let fd = new FormData(this);
-      $.ajax({
-        url: '/backend/send_volunteer.php',
-        type: 'POST',
-        contentType: false,
-        processData: false,
-        data: fd,
-        beforeSend: () => {
-          btn.prop('disabled', true);
-          setTimeout(() => btn.prop('disabled', false), 10000);
-          waiting.addClass('active');
-        },
-        success: msg => {
-          waiting.removeClass('active');
-
-          switch (msg) {
-            case '1111':
-              {
-                err.addClass('active').html('Что-то пошло не так! До этого IF дойти не должен!');
-                setTimeout(() => err.removeClass('active'), 5000);
-                break;
-              }
-
-            case '3':
-              {
-                err.addClass('active').html('Электронная почта указана некорректно');
-                setTimeout(() => err.removeClass('active'), 5000);
-                break;
-              }
-
-            case '4':
-              {
-                err.addClass('active').html('Дата рождения больше сегодняшнего дня');
-                setTimeout(() => err.removeClass('active'), 5000);
-                break;
-              }
-
-            case '5':
-              {
-                err.addClass('active').html('Год рождения введён некорректно');
-                setTimeout(() => err.removeClass('active'), 5000);
-                break;
-              }
-
-            case '6':
-              {
-                err.addClass('active').html('У Вас сегодня День Рождения?:-)');
-                setTimeout(() => err.removeClass('active'), 5000);
-                break;
-              }
-
-            default:
-              {
-                $(this)[0].reset();
-              }
-          }
-        }
-      });
-    }
-  }
-
-  $('#form-volunteer').on('submit', sendRequestVolunteer);
-
-  function sendRequestLosted(e, btn) {
-    btn = $(this).find('input[type="submit"]');
-    const fio_applicant = $(this).find('input[name="fio_applicant"]');
-    const phone_applicant = $(this).find('input[name="phone_applicant"]');
-    const fio_miss = $(this).find('input[name="fio_missed"]');
-    const birthday_missed = $(this).find('input[name="birthday_missed"]');
-    const date_missed = $(this).find('input[name="date_missed"]');
-    const place_missed = $(this).find('input[name="place_missed"]');
-    const preview = $(this).find('#photo-preview');
-    const err = $(this).find('[data-err]');
-    const waiting = $(this).find('[data-waiting]');
-    e.preventDefault();
-
-    if (!nameTest(fio_miss) || !nameTest(fio_applicant)) {
-      err.addClass('active').html('Имя и фамилия могут содержать только буквы');
-      setTimeout(() => err.removeClass('active'), 5000);
-    } else if (phone_applicant.val() === '') {
-      err.addClass('active').html('Не указан номер телефона');
-      setTimeout(() => err.removeClass('active'), 5000);
-    } else if (place_missed.val() === '') {
-      err.addClass('active').html('Не указана область пропажи');
-      setTimeout(() => err.removeClass('active'), 5000);
-    } else if (birthday_missed.val() === '' || birthday_missed.val().length > 10) {
-      err.addClass('active').html('Дата рождения не указана или введена некорректно');
-      setTimeout(() => err.removeClass('active'), 5000);
-    } else if (date_missed.val() === '' || date_missed.val().length > 10) {
-      err.addClass('active').html('Дата пропажи не указана или введена некорректно');
-      setTimeout(() => err.removeClass('active'), 5000);
-    } else {
-      let fd = new FormData(this);
-      $.ajax({
-        url: '/backend/send_losted.php',
-        type: 'POST',
-        contentType: false,
-        processData: false,
-        data: fd,
-        beforeSend: () => {
-          btn.prop('disabled', true);
-          setTimeout(() => btn.prop('disabled', false), 10000);
-          waiting.addClass('active');
-        },
-        success: msg => {
-          console.log(msg);
-          waiting.removeClass('active');
-
-          switch (msg) {
-            case '1111':
-              {
-                err.addClass('active').html('Поля, отмеченные *, обязательны к заполнению!');
-                setTimeout(() => err.removeClass('active'), 5000);
-                break;
-              }
-
-            case '8':
-              {
-                err.addClass('active').html('Пожалуйста загрузите фотографию!');
-                setTimeout(() => err.removeClass('active'), 5000);
-                break;
-              }
-
-            case '9':
-              {
-                err.addClass('active').html('Дата рождения не может быть больше даты пропажи!');
-                setTimeout(() => err.removeClass('active'), 5000);
-                break;
-              }
-
-            case '5':
-              {
-                err.addClass('active').html('Год рождения введён некорректно!');
-                setTimeout(() => err.removeClass('active'), 5000);
-                break;
-              }
-
-            case '6':
-              {
-                err.addClass('active').html('Дата пропажи введёна некорректно!');
-                setTimeout(() => err.removeClass('active'), 5000);
-                break;
-              }
-
-            case '7':
-              {
-                err.addClass('active').html('Пропавший человек родился сегодня?!');
-                setTimeout(() => err.removeClass('active'), 5000);
-                break;
-              }
-
-            default:
-              {
-                err.addClass('active').html('Зявка успешно отправлена!').css('color', '#00ff55');
-                setTimeout(() => err.removeClass('active'), 5000);
-                $(this)[0].reset();
-                $(this).find('#photo-missed').val('');
-                $(this).find('#photo-name').val('');
-                preview.addClass('hide');
-                setTimeout(() => preview.remove(), 600);
-              }
-          }
-        }
-      });
-    }
-  }
-
-  $('#form-losted').on('submit', sendRequestLosted);
-  $(document).on('change', '#photo-missed', loadFile);
+  // function sendRequestLosted(e, btn) {
+  //   btn = $(this).find('input[type="submit"]');
+  //   const fio_applicant = $(this).find('input[name="fio_applicant"]');
+  //   const phone_applicant = $(this).find('input[name="phone_applicant"]');
+  //   const fio_miss = $(this).find('input[name="fio_missed"]');
+  //   const birthday_missed = $(this).find('input[name="birthday_missed"]');
+  //   const date_missed = $(this).find('input[name="date_missed"]');
+  //   const place_missed = $(this).find('input[name="place_missed"]');
+  //   const preview = $(this).find('#photo-preview');
+  //   const err = $(this).find('[data-err]');
+  //   const waiting = $(this).find('[data-waiting]');
+  //   e.preventDefault();
+  //
+  //   if (!nameTest(fio_miss) || !nameTest(fio_applicant)) {
+  //     err.addClass('active').html('Имя и фамилия могут содержать только буквы');
+  //     setTimeout(() => err.removeClass('active'), 5000);
+  //   } else if (phone_applicant.val() === '') {
+  //     err.addClass('active').html('Не указан номер телефона');
+  //     setTimeout(() => err.removeClass('active'), 5000);
+  //   } else if (place_missed.val() === '') {
+  //     err.addClass('active').html('Не указана область пропажи');
+  //     setTimeout(() => err.removeClass('active'), 5000);
+  //   } else if (birthday_missed.val() === '' || birthday_missed.val().length > 10) {
+  //     err.addClass('active').html('Дата рождения не указана или введена некорректно');
+  //     setTimeout(() => err.removeClass('active'), 5000);
+  //   } else if (date_missed.val() === '' || date_missed.val().length > 10) {
+  //     err.addClass('active').html('Дата пропажи не указана или введена некорректно');
+  //     setTimeout(() => err.removeClass('active'), 5000);
+  //   } else {
+  //     let fd = new FormData(this);
+  //     $.ajax({
+  //       url: '/backend/send_losted.php',
+  //       type: 'POST',
+  //       contentType: false,
+  //       processData: false,
+  //       data: fd,
+  //       beforeSend: () => {
+  //         btn.prop('disabled', true);
+  //         setTimeout(() => btn.prop('disabled', false), 10000);
+  //         waiting.addClass('active');
+  //       },
+  //       success: msg => {
+  //         console.log(msg);
+  //         waiting.removeClass('active');
+  //
+  //         switch (msg) {
+  //           case '1111':
+  //             {
+  //               err.addClass('active').html('Поля, отмеченные *, обязательны к заполнению!');
+  //               setTimeout(() => err.removeClass('active'), 5000);
+  //               break;
+  //             }
+  //
+  //           case '8':
+  //             {
+  //               err.addClass('active').html('Пожалуйста загрузите фотографию!');
+  //               setTimeout(() => err.removeClass('active'), 5000);
+  //               break;
+  //             }
+  //
+  //           case '9':
+  //             {
+  //               err.addClass('active').html('Дата рождения не может быть больше даты пропажи!');
+  //               setTimeout(() => err.removeClass('active'), 5000);
+  //               break;
+  //             }
+  //
+  //           case '5':
+  //             {
+  //               err.addClass('active').html('Год рождения введён некорректно!');
+  //               setTimeout(() => err.removeClass('active'), 5000);
+  //               break;
+  //             }
+  //
+  //           case '6':
+  //             {
+  //               err.addClass('active').html('Дата пропажи введёна некорректно!');
+  //               setTimeout(() => err.removeClass('active'), 5000);
+  //               break;
+  //             }
+  //
+  //           case '7':
+  //             {
+  //               err.addClass('active').html('Пропавший человек родился сегодня?!');
+  //               setTimeout(() => err.removeClass('active'), 5000);
+  //               break;
+  //             }
+  //
+  //           default:
+  //             {
+  //               err.addClass('active').html('Зявка успешно отправлена!').css('color', '#00ff55');
+  //               setTimeout(() => err.removeClass('active'), 5000);
+  //               $(this)[0].reset();
+  //               $(this).find('#photo-missed').val('');
+  //               $(this).find('#photo-name').val('');
+  //               preview.addClass('hide');
+  //               setTimeout(() => preview.remove(), 600);
+  //             }
+  //         }
+  //       }
+  //     });
+  //   }
+  // }
+  //
+  // $('#form-losted').on('submit', sendRequestLosted);
+  // $(document).on('change', '#photo-missed', loadFile);
 
   function loadFile() {
     const err = $(this).parents('form').find('[data-err]');
@@ -11472,7 +11472,7 @@ $(function () {
     });
   }
 
-  $(document).on('click', '[data-preview-del]', removeFile);
+  // $(document).on('click', '[data-preview-del]', removeFile);
 
   function removeFile() {
     let file_name_del = $(this).parent().prev().find('#photo-name').val();
@@ -11517,18 +11517,18 @@ $(function () {
   } //Cookie
 
 
-  $('.cookie__btn').on('click', function () {
-    $.ajax({
-      type: 'POST',
-      url: "/backend/acceptCookie.php",
-      data: {
-        "cookie": 1
-      },
-      response: 'text',
-      success: function (data) {
-        $('.cookie').fadeOut(300);
-      }
-    });
-  });
-  $('.cookie__close').on('click', () => $('.cookie').fadeOut(300));
+  // $('.cookie__btn').on('click', function () {
+  //   $.ajax({
+  //     type: 'POST',
+  //     url: "/backend/acceptCookie.php",
+  //     data: {
+  //       "cookie": 1
+  //     },
+  //     response: 'text',
+  //     success: function (data) {
+  //       $('.cookie').fadeOut(300);
+  //     }
+  //   });
+  // });
+  // $('.cookie__close').on('click', () => $('.cookie').fadeOut(300));
 });

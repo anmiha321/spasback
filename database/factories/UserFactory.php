@@ -17,7 +17,7 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->text,
             'surname' => $this->faker->text,
-            'phone' => $this->faker->phoneNumber,
+            'phone' => $this->faker->numerify('8##########'),
             'email' => $this->faker->email,
             'vk' => $this->faker->url,
             'city' => $this->faker->city,

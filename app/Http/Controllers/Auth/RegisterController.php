@@ -75,11 +75,13 @@ class RegisterController extends Controller
                 ->from('spas@ww.net.ru', 'spas');
         });
 
-        return User::create([
+        return [$item = User::create([
             'name' => $data['name'],
             'surname' => $data['surname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-        ]);
+            'status' => '0'
+            ]),
+            $item->delete()];
     }
 }
