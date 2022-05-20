@@ -36,7 +36,7 @@ class Blog extends Model
 
     public function PmainPage() {
         $teaser = $this->teaser;
-        $teaserSpliter = explode('/', $teaser); // Restricts it to only 2 values, for names like Billy Bob Jones
+        $teaserSpliter = explode('<br/>', $teaser); // Restricts it to only 2 values, for names like Billy Bob Jones
 
 //        $teaser_first_p = $teaserSpliter[0];
 //        $teaser_second_p = !empty($teaserSpliter[1]) ? $teaserSpliter[1]: "";
@@ -45,7 +45,7 @@ class Blog extends Model
 
     public function ParticlePage() {
         $article = $this->article;
-        $articleSpliter = explode('/', $article); // Restricts it to only 2 values, for names like Billy Bob Jones
+        $articleSpliter = explode('<br/>', $article); // Restricts it to only 2 values, for names like Billy Bob Jones
 
 //        $teaser_first_p = $teaserSpliter[0];
 //        $teaser_second_p = !empty($teaserSpliter[1]) ? $teaserSpliter[1]: "";

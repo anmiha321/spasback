@@ -42,7 +42,7 @@
                     <div class="faq__right">
                         <p class="faq__label">Ваша электронная почта</p>
                         <input type="email" name="faq_email" class="faq__input" placeholder="pochta@gmail.com" maxlength="40" required>
-                        <input type="submit" class="faq__submit btn">
+                        <button type="submit" class="faq__submit btn">Отправить</button>
                     </div>
                 </div>
                 <div data-err class="error" id="faq_error"></div>
@@ -83,14 +83,8 @@
                                 setTimeout(() => $('#faq_error').removeClass('active'), 5000);
                             });
                         } else {
-                            $('#success_message').html("");
-                            $('#success_message').addClass('alert alert-success');
-                            $('#success_message').text(response.message);
-                            $('input[data-clean]').val("");
-                            $('#auto_exist').prop('checked', false);
-                            $('#auto_not_exist').prop('checked', true);
-                            $('#auto_exist_label').removeClass('checked');
-                            $('#auto_not_exist_label').addClass('checked');
+                            $('#form-faq').find('input').val("");
+                            $('#form-faq').find('textarea').val("");
                             alert('Вопрос отправлен!');
                         }
                     }
